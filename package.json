@@ -1,5 +1,5 @@
 {
-  "name": "mywebapp",
+  "name": "stopsign",
   "version": "0.0.1",
   "author": "Alex Yang, Brian Soe, Purvi Desai",
   "description": "Assignment 1 for COGS 121",
@@ -17,6 +17,7 @@
     "mongoose": "^4.0.1",
     "mongoose-findorcreate": "^0.1.2",
     "passport": "0.2.1",
+    "passport-facebook": "^2.0.0",
     "passport-instagram": "0.1.2"
   },
   "engines": {
