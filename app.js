@@ -14,6 +14,8 @@ var Instagram = require('instagram-node-lib');
 var mongoose = require('mongoose');
 var app = express();
 
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/instagramexample');
+
 //local dependencies
 var models = require('./models');
 
@@ -193,6 +195,11 @@ app.get('/auth/instagram',
     // The request will be redirected to Instagram for authentication, so this
     // function will not be called.
   });
+  
+app.get('/auth/facebook',
+  passport.autheticate('facebook'),
+  function(req, res){
+  });
 
 // GET /auth/instagram/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -201,6 +208,12 @@ app.get('/auth/instagram',
 //   which, in this example, will redirect the user to the home page.
 app.get('/auth/instagram/callback', 
   passport.authenticate('instagram', { failureRedirect: '/login'}),
+  function(req, res) {
+    res.redirect('/account');
+  });
+  
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook', { failureRedirect: '/login'}),
   function(req, res) {
     res.redirect('/account');
   });
